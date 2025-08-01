@@ -1,0 +1,2 @@
+# Northern Ireland Raspberry Jam Infra
+This repository contains ansible playbooks for linux and Windows Powershell scripts used for install software and packages on machines used at the Northern Ireland Raspberry Jam.
