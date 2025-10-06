@@ -9,7 +9,7 @@ log "Cleaning standard user folders"
 rm -rf "${JAM_HOME}/.cache/"* 2>/dev/null || true
 
 # Wipe common content folders (NOT dotfiles)
-for d in Desktop Documents Downloads Pictures Videos Music Templates Public Examples; do
+for d in Documents Downloads Pictures Videos Music Templates Public Examples; do
   rm -rf "${JAM_HOME}/${d}/"* 2>/dev/null || true
 done
 

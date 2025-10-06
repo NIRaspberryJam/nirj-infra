@@ -71,3 +71,5 @@ net.sonic_pi.SonicPi.desktop
 ## Notes
 When making a change. You need to bump the version.txt file in order for the devices to apply the changes.
 To make the devices apply the changes, either reboot, or run: `sudo systemctl start jam-gitops.service`
+
+The main static bash file that runs the git-ops pull is located in: `/usr/local/sbin/jam-gitops-check.sh`
