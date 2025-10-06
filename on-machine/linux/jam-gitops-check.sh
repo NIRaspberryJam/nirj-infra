@@ -16,14 +16,8 @@ ZIP_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}/archive/refs/heads/${BRAN
 
 log() { echo "[jam-gitops] $(date -Is) $*"; }
 
-# small startup delay
+# small startup delay (give network/services a moment)
 sleep 10
-
-# Run on every boot, no matter if the version has changed
-if [[ -x "/opt/jam-gitops/boot.sh" ]]; then
-  echo "[jam-gitops] $(date -Is) running pre-check boot.sh"
-  /opt/jam-gitops/boot.sh 2>&1 | systemd-cat -t jam-gitops-boot
-fi
 
 # fetch remote version
 if ! REMOTE_VERSION="$(curl -fsSL "$REMOTE_VERSION_URL" | tr -d '\r')"; then
@@ -61,7 +55,6 @@ fi
 STAGE_DIR="$TMP_DIR/stage"
 mkdir -p "$STAGE_DIR"
 cp -a "$SRC_DIR/." "$STAGE_DIR/"
-chmod +x "$STAGE_DIR/main.sh" 2>/dev/null || true
 
 if [[ -d "$BASE_DIR" ]]; then
   rm -rf "${BASE_DIR}.bak" 2>/dev/null || true
@@ -69,12 +62,20 @@ if [[ -d "$BASE_DIR" ]]; then
 fi
 mkdir -p "$(dirname "$BASE_DIR")"
 mv "$STAGE_DIR" "$BASE_DIR"
+
+# Ownership & perms normalization
+chown -R root:root "${BASE_DIR}"
+# directories 0755, files 0644, shell scripts 0755
+find "${BASE_DIR}" -type d -exec chmod 0755 {} \;
+find "${BASE_DIR}" -type f -exec chmod 0644 {} \;
+find "${BASE_DIR}" -type f -name "*.sh" -exec chmod 0755 {} \;
+
 echo -n "$REMOTE_VERSION" > "$LOCAL_VERSION_FILE"
 
 # run main.sh (idempotent)
 if [[ -x "$BASE_DIR/main.sh" ]]; then
   log "Running main.sh"
-  "$BASE_DIR/main.sh"
+  "${BASE_DIR}/main.sh" 2>&1 | systemd-cat -t jam-gitops-main
 else
   log "WARNING: $BASE_DIR/main.sh not found or not executable"
 fi
