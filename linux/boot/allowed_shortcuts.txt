@@ -1,0 +1,3 @@
+code.desktop
+net.sonic_pi.SonicPi.desktop
+chrome-mcmafngehdlkdbalhhjdclldacchajan-Default.desktop
