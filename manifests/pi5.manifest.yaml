@@ -1,0 +1,17 @@
+schema: 1
+
+apt:
+  # Keep false while testing so future apply work cannot remove packages.
+  enforce: false
+  packages:
+    - curl
+    - git
+    - python3
+    - python3-pip
+    - thonny
+
+overlay:
+  enabled: false
+
+background:
+  enabled: false
