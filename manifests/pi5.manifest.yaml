@@ -2,13 +2,14 @@ schema: 1
 
 apt:
   # Keep false while testing so future apply work cannot remove packages.
-  enforce: false
+  enforce: true
   packages:
     - curl
     - git
     - python3
     - python3-pip
     - thonny
+    - figlet
 
 overlay:
   enabled: false
