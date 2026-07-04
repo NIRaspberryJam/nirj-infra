@@ -15,4 +15,4 @@ overlay:
   enabled: true
 
 background:
-  enabled: false
+  enabled: true
