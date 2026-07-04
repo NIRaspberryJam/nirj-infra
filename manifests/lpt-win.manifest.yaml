@@ -1,0 +1,13 @@
+schema: 1
+
+# Windows package reconciliation will use a future Winget provider. Keep the
+# existing APT schema inert so this manifest can be downloaded and validated.
+apt:
+  enforce: false
+  packages: []
+
+overlay:
+  enabled: false
+
+background:
+  enabled: false
