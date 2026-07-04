@@ -10,6 +10,11 @@ apt:
     - python3-pip
     - thonny
     - figlet
+    - code
+  
+desktop:
+  shortcuts:
+    - vscode
 
 overlay:
   enabled: true
