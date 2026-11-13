@@ -37,3 +37,6 @@ overlay:
 
 background:
   enabled: true
+
+vscode:
+  config_url: https://raw.githubusercontent.com/NIRaspberryJam/nirj-infra/refs/heads/sonic_pi_fix/configs/vscode.yaml
