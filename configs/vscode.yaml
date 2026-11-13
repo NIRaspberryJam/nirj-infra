@@ -1,0 +1,28 @@
+schema: 1
+
+# This folder lives on the root OverlayFS, so session work resets on reboot.
+folder: /home/jam/jam-day
+
+extensions:
+  - ms-python.python
+  - ms-python.debugpy
+
+# Classroom launchers do not offer account-based features or Copilot.
+disabled_extensions:
+  - vscode.github-authentication
+  - vscode.microsoft-authentication
+  - github.copilot
+  - github.copilot-chat
+
+settings:
+  chat.disableAIFeatures: true
+  workbench.startupEditor: none
+  workbench.welcomePage.walkthroughs.openOnInstall: false
+  window.restoreWindows: none
+  update.showReleaseNotes: false
+  github.gitAuthentication: false
+  python.defaultInterpreterPath: /data/nirj/python-venv/bin/python
+
+runtime:
+  # No keyring prompt. Stored credentials lack OS-keyring protection.
+  password-store: basic
