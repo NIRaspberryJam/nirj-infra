@@ -3,6 +3,8 @@ schema: 1
 apt:
   # Keep false while testing so future apply work cannot remove packages.
   enforce: true
+  allow_dependency_removals:
+    - pipewire-jack
   packages:
     - curl
     - git
