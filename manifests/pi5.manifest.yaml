@@ -3,6 +3,8 @@ schema: 1
 apt:
   # Keep false while testing so future apply work cannot remove packages.
   enforce: true
+  allow_dependency_removals:
+    - pipewire-jack
   packages:
     - curl
     - git
@@ -10,6 +12,7 @@ apt:
     - python3-pip
     - thonny
     - sonic-pi
+    - pipewire-jack
     - figlet
     - code
 
@@ -34,3 +37,6 @@ overlay:
 
 background:
   enabled: true
+
+vscode:
+  config_url: https://raw.githubusercontent.com/NIRaspberryJam/nirj-infra/refs/heads/sonic_pi_fix/configs/vscode.yaml
